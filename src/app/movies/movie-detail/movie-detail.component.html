@@ -1,0 +1,8 @@
+<div *ngIf="movie$ | async as movie">
+  <div class="card" [routerLink]="['/movie', movie.title]">
+    <div class="card-body">
+      <h1 class="card-title">{{ movie.title }}</h1>
+      <app-rating [(rating)]="movie.rating"></app-rating>
+    </div>
+  </div>
+</div>
