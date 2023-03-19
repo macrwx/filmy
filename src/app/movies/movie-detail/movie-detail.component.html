@@ -1,8 +1,57 @@
-<div *ngIf="movie$ | async as movie">
-  <div class="card" [routerLink]="['/movie', movie.title]">
-    <div class="card-body">
-      <h1 class="card-title">{{ movie.title }}</h1>
-      <app-rating [(rating)]="movie.rating"></app-rating>
+<div class="container">
+  <div *ngIf="movie">
+    <h2>Napisz recenzje</h2>
+    <form #reviewForm="ngForm" (ngSubmit)="onSubmit(reviewForm)">
+      <div class="mb-3">
+        <label for="user" class="form-label">Imie</label>
+        <input type="text" class="form-control" id="user" name="user" ngModel />
+      </div>
+      <div class="mb-3">
+        <app-rating [interactable]="true" [(rating)]="rating"></app-rating>
+      </div>
+      <div class="mb-3 form-floating">
+        <textarea
+          class="form-control"
+          placeholder="Napisz komentarz tutaj"
+          name="comment"
+          id="comment"
+          ngModel
+        ></textarea>
+        <label for="comment">Komentarz</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <h2>Recenzje</h2>
+    <div *ngFor="let review of movie.reviews">
+      <h6>{{ review.user }}</h6>
+      <app-rating [rating]="review.rating"></app-rating>
+      <p>{{ review.comment }}</p>
     </div>
+  </div>
+</div>
+
+<div *ngIf="movie">
+  <div class="col-lg-8 mx-auto p-4 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom"></header>
+
+    <main>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <img [src]="movie.poster" alt="" />
+        </div>
+
+        <div class="col-md-9">
+          <h1 class="fw-bold">{{ movie.title | uppercase }}</h1>
+          <app-rating class="fs-4" [(rating)]="movie.rating"></app-rating>
+          <p class="fs-5 col-md-8">
+            {{ movie.description }}
+          </p>
+        </div>
+      </div>
+    </main>
+    <footer class="pt-5 my-5 text-muted border-top">
+      Created by the Bootstrap team &middot; &copy; 2022
+    </footer>
   </div>
 </div>

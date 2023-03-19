@@ -1,7 +1,7 @@
-<ul class="d-flex flex-row gap-2 list-unstyled fs-4">
+<ul class="d-flex flex-row gap-2 list-unstyled mb-2">
   <li
     *ngFor="let n of [1, 2, 3, 4, 5]"
-    [style.color]="n <= rating ? '#fa9500': '#000000'"
+    [style.color]="n <= rating ? '#fa9500' : '#000000'"
     (click)="setRating(n)"
   >
     <i class="bi bi-star-fill"></i>

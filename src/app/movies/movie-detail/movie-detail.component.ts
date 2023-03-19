@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Form, FormControl } from "@angular/forms";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Observable, switchMap } from "rxjs";
-import { Movie } from "../movie";
+import { Movie, Review } from "../movie";
 import { MoviesService } from "../movies.service";
 
 @Component({
@@ -9,7 +10,9 @@ import { MoviesService } from "../movies.service";
   templateUrl: "./movie-detail.component.html",
 })
 export class MovieDetailComponent implements OnInit {
-  movie$?: Observable<Movie>;
+  movie?: Movie;
+
+  rating!: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +23,15 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get("id")!;
 
-    this.movie$ = this.service.getMovie(+id);
+    this.service.getMovie(+id).subscribe((movie) => (this.movie = movie));
+  }
+
+  addReview() {
+    // this.movie?.reviews.push(this.review);
+  }
+
+  onSubmit(reviewForm: any) {
+    let review = { ...reviewForm.value, rating: this.rating };
+    this.movie?.reviews.push(review);
   }
 }
