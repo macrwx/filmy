@@ -47,26 +47,4 @@ export const MOVIES: Movie[] = [
       },
     ],
   },
-  {
-    id: 3,
-    title: "Forrest Gump",
-    director: "Robert Zemeckis",
-    description:
-      "Podczas oczekiwania na autobus Forrest Gump, człowiek o niskim ilorazie inteligencji, opowiada nieznajomemu o swoim życiu, które obejmowało między innymi wzięcie udziału w wojnie w Wietnamie i spotkanie prezydenta Stanów Zjednoczonych.",
-    rating: 4,
-    reviews: [
-      {
-        user: "Anna",
-        comment:
-          "Ten film jest jednym z moich ulubionych ze względu na wspaniałą opowieść o życiu Forresta.",
-        rating: 5,
-      },
-      {
-        user: "Piotr",
-        comment:
-          "Film jest dość długi, ale warto go obejrzeć dla świetnej gry aktorskiej Toma Hanksa.",
-        rating: 4,
-      },
-    ],
-  },
 ];
