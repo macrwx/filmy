@@ -26,8 +26,15 @@ export class MovieDetailComponent implements OnInit {
     this.service.getMovie(+id).subscribe((movie) => (this.movie = movie));
   }
 
-  addReview() {
-    // this.movie?.reviews.push(this.review);
+  getRating() {
+    const len = this.movie?.reviews.length || 1;
+    let rating =
+      this.movie?.reviews
+        .map((review) => review.rating)
+        .reduce((acc, curr) => acc + curr)! / len;
+
+    this.movie!.rating = rating;
+    return rating;
   }
 
   onSubmit(reviewForm: any) {
